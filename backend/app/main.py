@@ -13,12 +13,19 @@ from app.models.user import User
 
 
 async def create_admin_user() -> None:
-    """Create default admin user if it doesn't exist."""
+    """Create or update default admin user."""
     async with async_session_maker() as session:
         result = await session.execute(select(User).where(User.email == settings.admin_email))
         existing_user = result.scalar_one_or_none()
 
-        if not existing_user:
+        if existing_user:
+            # Update password to ensure it's correctly hashed
+            existing_user.hashed_password = get_password_hash(settings.admin_password)
+            existing_user.is_active = True
+            existing_user.is_superuser = True
+            await session.commit()
+            print(f"Updated admin user: {settings.admin_email}")
+        else:
             admin_user = User(
                 email=settings.admin_email,
                 hashed_password=get_password_hash(settings.admin_password),

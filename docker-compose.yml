@@ -38,6 +38,7 @@ services:
       DATABASE_URL: postgresql+asyncpg://postgres:postgres@db:5432/screen_ai
       DEBUG: "true"
       SECRET_KEY: dev-secret-key-change-in-production
+      CREATE_ADMIN_ON_STARTUP: "true"
     expose:
       - "8000"
     volumes:
