@@ -6,7 +6,8 @@ Screen AI is a drug discovery screening data management and analysis platform. I
 
 ## Tech Stack
 
-- **Backend**: Python 3.11+ with FastAPI
+- **Backend**: Python 3.12 with FastAPI
+- **Package Management**: uv (for Python dependencies)
 - **Frontend**: React (TypeScript)
 - **Database**: PostgreSQL
 - **Storage**: AWS S3 (images), PostgreSQL (metadata)
@@ -26,7 +27,7 @@ screen-ai/
 │   │   └── main.py
 │   ├── alembic/           # DB migrations
 │   ├── tests/
-│   └── requirements.txt
+│   └── pyproject.toml
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
@@ -102,8 +103,12 @@ Focus areas:
 ```bash
 # Backend
 cd backend
-pip install -r requirements.txt
-uvicorn app.main:app --reload
+uv sync                         # Install dependencies from pyproject.toml
+uv run uvicorn app.main:app --reload
+
+# Add new dependencies
+uv add <package-name>           # Add a dependency
+uv add --dev <package-name>     # Add a dev dependency
 
 # Frontend
 cd frontend
@@ -112,12 +117,12 @@ npm run dev
 
 # Database migrations
 cd backend
-alembic upgrade head
+uv run alembic upgrade head
 ```
 
 ## Testing
 
-- Backend: `pytest` in backend directory
+- Backend: `uv run pytest` in backend directory
 - Frontend: `npm test` in frontend directory
 
 ## Notes for AI Assistant

@@ -101,6 +101,8 @@ Last updated: 2025-01-29
 
 | Decision | Choice | Rationale |
 |----------|--------|-----------|
+| Python Version | 3.12 | Latest stable, performance improvements |
+| Package Manager | uv | Fast, modern Python package management |
 | Backend Framework | FastAPI | Async, modern Python, auto-docs |
 | Frontend Framework | React + TypeScript | Industry standard, type safety |
 | Database | PostgreSQL | Robust, JSON support, extensions |
