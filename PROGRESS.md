@@ -1,12 +1,12 @@
 # Project Progress Tracker
 
-## Current Status: Phase 1 - Foundation (In Progress)
+## Current Status: Phase 3 - Frontend Foundation (In Progress)
 
 Last updated: 2025-01-29
 
 ---
 
-## Phase 1: Foundation
+## Phase 1: Foundation - COMPLETED
 
 ### Completed
 - [x] Initial project discussion and scope definition
@@ -26,41 +26,42 @@ Last updated: 2025-01-29
   - WellAnalysis (cell count, viability, z-score, extensible metrics)
   - DoseResponseCurve (IC50, EC50, hill slope, data points)
 - [x] Alembic migrations setup (async)
-
-### In Progress
-- [ ] Create initial migration
-- [ ] API routes for hierarchy (CRUD)
-
-### Pending
-- [ ] Frontend project setup (React, TypeScript)
-- [ ] Docker Compose configuration
+- [x] Initial database migration created
 
 ---
 
-## Phase 2: Core API & Authentication
+## Phase 2: Core API & Authentication - COMPLETED
 
-### Pending
-- [ ] Auth endpoints (login, logout, me)
-- [ ] User CRUD
-- [ ] Project CRUD with pagination
-- [ ] Experiment CRUD (nested under project)
-- [ ] Plate CRUD (nested under experiment)
-- [ ] Well CRUD (nested under plate)
-- [ ] Image endpoints (metadata only, thumbnails)
-- [ ] Protected routes middleware
+### Completed
+- [x] Auth endpoints (login, register, me)
+- [x] JWT-based authentication with dependency injection
+- [x] Project CRUD with pagination
+- [x] Experiment CRUD (nested under project)
+- [x] Plate CRUD (nested under experiment)
+- [x] Well CRUD (nested under plate)
+- [x] Plate grid endpoint for heatmap data
+- [x] Well thumbnails endpoint
+- [x] Protected routes middleware
 
 ---
 
-## Phase 3: Frontend Foundation
+## Phase 3: Frontend Foundation - IN PROGRESS
+
+### Completed
+- [x] React + TypeScript + Vite setup
+- [x] Tailwind CSS configuration
+- [x] API client setup with axios
+- [x] React Query for server state
+- [x] Authentication context
+- [x] Login page
+- [x] Protected route wrapper
+- [x] Navigation/layout components
+- [x] Project list page with create/delete
 
 ### Pending
-- [ ] React + TypeScript + Vite setup
-- [ ] API client setup (React Query)
-- [ ] Login page
-- [ ] Protected route wrapper
-- [ ] Navigation/layout components
-- [ ] Project list page
+- [ ] Project detail page
 - [ ] Experiment list page
+- [ ] Plate list page
 
 ---
 
@@ -117,6 +118,9 @@ Last updated: 2025-01-29
 | Package Manager | uv | Fast, modern Python packaging |
 | Backend Framework | FastAPI | Async, modern Python, auto-docs |
 | Frontend Framework | React + TypeScript | Industry standard, type safety |
+| Frontend Build | Vite | Fast dev server, HMR |
+| State Management | React Query | Server state caching, refetch |
+| CSS | Tailwind CSS | Utility-first, rapid prototyping |
 | Database | PostgreSQL | Robust, JSON support, extensions |
 | Image Storage | AWS S3 | Scalable, cost-effective |
 | Image Format | TIFF (Perkin Elmer) | Domain standard |
@@ -142,6 +146,45 @@ User
 DoseResponseCurve
   └── links Experiment ↔ Compound
 ```
+
+---
+
+## API Endpoints
+
+### Auth
+- `POST /api/auth/login` - Login with email/password
+- `POST /api/auth/register` - Register new user
+- `GET /api/auth/me` - Get current user
+
+### Projects
+- `GET /api/projects` - List projects (paginated)
+- `POST /api/projects` - Create project
+- `GET /api/projects/{id}` - Get project
+- `PATCH /api/projects/{id}` - Update project
+- `DELETE /api/projects/{id}` - Delete project
+
+### Experiments
+- `GET /api/projects/{id}/experiments` - List experiments
+- `POST /api/projects/{id}/experiments` - Create experiment
+- `GET /api/projects/{id}/experiments/{id}` - Get experiment
+- `PATCH /api/projects/{id}/experiments/{id}` - Update experiment
+- `DELETE /api/projects/{id}/experiments/{id}` - Delete experiment
+
+### Plates
+- `GET /api/experiments/{id}/plates` - List plates
+- `POST /api/experiments/{id}/plates` - Create plate
+- `GET /api/experiments/{id}/plates/{id}` - Get plate
+- `GET /api/experiments/{id}/plates/{id}/grid` - Get plate grid for heatmap
+- `PATCH /api/experiments/{id}/plates/{id}` - Update plate
+- `DELETE /api/experiments/{id}/plates/{id}` - Delete plate
+
+### Wells
+- `GET /api/plates/{id}/wells` - List wells
+- `POST /api/plates/{id}/wells` - Create well
+- `GET /api/plates/{id}/wells/{id}` - Get well with compound
+- `GET /api/plates/{id}/wells/{id}/thumbnails` - Get well image thumbnails
+- `PATCH /api/plates/{id}/wells/{id}` - Update well
+- `DELETE /api/plates/{id}/wells/{id}` - Delete well
 
 ---
 
