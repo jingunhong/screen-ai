@@ -17,8 +17,8 @@ Screen AI is a web application for managing, exploring, and analyzing high-conte
 | Layer | Technology |
 |-------|------------|
 | Backend | Python 3.12, FastAPI, SQLAlchemy |
-| Package Management | uv |
-| Frontend | React 18+, TypeScript |
+| Package Management | uv (Python), Bun (Frontend) |
+| Frontend | React 19, TypeScript, Vite, Tailwind CSS |
 | Database | PostgreSQL |
 | Storage | AWS S3 |
 | Containerization | Docker, Docker Compose |
@@ -54,7 +54,7 @@ Project
 ### Prerequisites
 - Python 3.12
 - uv (Python package manager) - Install: `curl -LsSf https://astral.sh/uv/install.sh | sh`
-- Node.js 18+
+- Bun (Frontend runtime) - Install: `curl -fsSL https://bun.sh/install | bash`
 - PostgreSQL 15+
 - Docker & Docker Compose (optional)
 
@@ -72,8 +72,8 @@ uv run uvicorn app.main:app --reload
 
 # Frontend setup (new terminal)
 cd frontend
-npm install
-npm run dev
+bun install
+bun dev
 ```
 
 ### Managing Python Dependencies
