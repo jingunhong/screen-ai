@@ -16,7 +16,8 @@ Screen AI is a web application for managing, exploring, and analyzing high-conte
 
 | Layer | Technology |
 |-------|------------|
-| Backend | Python 3.11+, FastAPI, SQLAlchemy |
+| Backend | Python 3.12, FastAPI, SQLAlchemy |
+| Package Management | uv |
 | Frontend | React 18+, TypeScript |
 | Database | PostgreSQL |
 | Storage | AWS S3 |
@@ -51,7 +52,8 @@ Project
 ## Getting Started
 
 ### Prerequisites
-- Python 3.11+
+- Python 3.12
+- uv (Python package manager) - Install: `curl -LsSf https://astral.sh/uv/install.sh | sh`
 - Node.js 18+
 - PostgreSQL 15+
 - Docker & Docker Compose (optional)
@@ -65,15 +67,23 @@ cd screen-ai
 
 # Backend setup
 cd backend
-python -m venv venv
-source venv/bin/activate  # or `venv\Scripts\activate` on Windows
-pip install -r requirements.txt
-uvicorn app.main:app --reload
+uv sync                              # Install dependencies (creates .venv automatically)
+uv run uvicorn app.main:app --reload
 
 # Frontend setup (new terminal)
 cd frontend
 npm install
 npm run dev
+```
+
+### Managing Python Dependencies
+
+```bash
+cd backend
+uv add <package-name>           # Add a dependency
+uv add --dev <package-name>     # Add a dev dependency
+uv remove <package-name>        # Remove a dependency
+uv sync                         # Sync dependencies from pyproject.toml
 ```
 
 ### Environment Variables
@@ -112,7 +122,8 @@ screen-ai/
 │   │   ├── services/      # Business logic
 │   │   └── core/          # Config, auth, dependencies
 │   ├── alembic/           # Database migrations
-│   └── tests/
+│   ├── tests/
+│   └── pyproject.toml     # Python dependencies (managed by uv)
 ├── frontend/
 │   ├── src/
 │   │   ├── components/    # Reusable UI components
