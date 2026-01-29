@@ -13,11 +13,7 @@ Last updated: 2026-01-29
 - [x] Tech stack decision (FastAPI + React + PostgreSQL + S3)
 - [x] Data model hierarchy defined (Project → Experiment → Plate → Well → Image)
 - [x] Created project documentation (README.md, CLAUDE.md, PROGRESS.md)
-
-### In Progress
-- [ ] Project scaffolding (backend + frontend structure)
-
-### Completed
+- [x] Project scaffolding (backend + frontend structure)
 - [x] Database schema design (SQLAlchemy models for all entities)
 - [x] Backend project setup (FastAPI, SQLAlchemy, Alembic)
 - [x] Frontend project setup (React 19, TypeScript, Vite, Tailwind CSS, Bun)
