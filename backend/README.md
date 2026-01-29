@@ -32,10 +32,34 @@ FastAPI backend for the Screen AI drug discovery screening data management platf
 uv run pytest
 ```
 
-### Creating Migrations
+### Database Migrations (Alembic)
+
+**Apply all migrations:**
 ```bash
-uv run alembic revision --autogenerate -m "description"
+uv run alembic upgrade head
 ```
+
+**Create a new migration (auto-generate from model changes):**
+```bash
+uv run alembic revision --autogenerate -m "description of changes"
+```
+
+**View migration history:**
+```bash
+uv run alembic history
+```
+
+**Downgrade one revision:**
+```bash
+uv run alembic downgrade -1
+```
+
+**Check current revision:**
+```bash
+uv run alembic current
+```
+
+> **Note:** Auto-generate requires a running PostgreSQL database to compare models against. For initial setup, ensure the database is running via Docker Compose before creating migrations.
 
 ### API Documentation
 - Swagger UI: http://localhost:8000/api/docs
