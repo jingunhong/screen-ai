@@ -1,14 +1,10 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
 from uuid import UUID
 
 from pydantic import BaseModel, Field
 
 from app.schemas.base import IDSchema, TimestampSchema
-
-if TYPE_CHECKING:
-    from app.schemas.well import WellRead
 
 
 class PlateBase(TimestampSchema):
@@ -38,4 +34,4 @@ class PlateRead(PlateBase, IDSchema):
 
 
 class PlateReadWithWells(PlateRead):
-    wells: list[WellRead] = []
+    wells: list[WellRead] = []  # noqa: F821

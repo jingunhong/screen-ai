@@ -16,6 +16,7 @@ from app.schemas.compound import (
 from app.schemas.experiment import (
     ExperimentCreate,
     ExperimentRead,
+    ExperimentReadWithPlates,
     ExperimentUpdate,
 )
 from app.schemas.image import (
@@ -27,11 +28,13 @@ from app.schemas.pagination import PaginatedResponse, PaginationParams
 from app.schemas.plate import (
     PlateCreate,
     PlateRead,
+    PlateReadWithWells,
     PlateUpdate,
 )
 from app.schemas.project import (
     ProjectCreate,
     ProjectRead,
+    ProjectReadWithExperiments,
     ProjectUpdate,
 )
 from app.schemas.user import (
@@ -42,8 +45,15 @@ from app.schemas.user import (
 from app.schemas.well import (
     WellCreate,
     WellRead,
+    WellReadWithRelations,
     WellUpdate,
 )
+
+# Rebuild models with forward references now that all schemas are imported
+ProjectReadWithExperiments.model_rebuild()
+ExperimentReadWithPlates.model_rebuild()
+PlateReadWithWells.model_rebuild()
+WellReadWithRelations.model_rebuild()
 
 __all__ = [
     # Analysis

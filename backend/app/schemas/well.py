@@ -1,16 +1,11 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
 from uuid import UUID
 
 from pydantic import BaseModel, Field, computed_field
 
 from app.schemas.base import IDSchema, TimestampSchema
 from app.schemas.compound import CompoundRead
-
-if TYPE_CHECKING:
-    from app.schemas.analysis import AnalysisRead
-    from app.schemas.image import ImageRead
 
 
 class WellBase(TimestampSchema):
@@ -51,5 +46,5 @@ class WellRead(WellBase, IDSchema):
 
 class WellReadWithRelations(WellRead):
     compound: CompoundRead | None = None
-    images: list[ImageRead] = []
-    analyses: list[AnalysisRead] = []
+    images: list[ImageRead] = []  # noqa: F821
+    analyses: list[AnalysisRead] = []  # noqa: F821

@@ -1,15 +1,11 @@
 from __future__ import annotations
 
 from datetime import date
-from typing import TYPE_CHECKING
 from uuid import UUID
 
 from pydantic import BaseModel
 
 from app.schemas.base import IDSchema, TimestampSchema
-
-if TYPE_CHECKING:
-    from app.schemas.plate import PlateRead
 
 
 class ExperimentBase(TimestampSchema):
@@ -36,4 +32,4 @@ class ExperimentRead(ExperimentBase, IDSchema):
 
 
 class ExperimentReadWithPlates(ExperimentRead):
-    plates: list[PlateRead] = []
+    plates: list[PlateRead] = []  # noqa: F821
