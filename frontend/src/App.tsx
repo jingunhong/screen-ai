@@ -4,6 +4,7 @@ import { useAuth } from './hooks/useAuth'
 import ProtectedRoute from './components/ProtectedRoute'
 import LoginPage from './pages/LoginPage'
 import ProjectsExperimentsPage from './pages/ProjectsExperimentsPage'
+import ExperimentDetailPage from './pages/ExperimentDetailPage'
 
 function LoginRoute() {
   const { isAuthenticated, isLoading } = useAuth()
@@ -44,7 +45,7 @@ function App() {
             path="/experiments/:id"
             element={
               <ProtectedRoute>
-                <ProjectsExperimentsPage />
+                <ExperimentDetailPage />
               </ProtectedRoute>
             }
           />
