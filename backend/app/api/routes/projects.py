@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.api.deps import get_db, get_pagination
+from app.api.deps import CurrentUser, get_db, get_pagination
 from app.models.project import Project
 from app.schemas.pagination import PaginatedResponse, PaginationParams
 from app.schemas.project import ProjectCreate, ProjectRead, ProjectUpdate
@@ -14,6 +14,7 @@ router = APIRouter()
 
 @router.get("", response_model=PaginatedResponse[ProjectRead])
 async def list_projects(
+    _current_user: CurrentUser,
     db: AsyncSession = Depends(get_db),
     pagination: PaginationParams = Depends(get_pagination),
 ) -> PaginatedResponse[ProjectRead]:
@@ -34,6 +35,7 @@ async def list_projects(
 @router.get("/{project_id}", response_model=ProjectRead)
 async def get_project(
     project_id: UUID,
+    _current_user: CurrentUser,
     db: AsyncSession = Depends(get_db),
 ) -> ProjectRead:
     query = select(Project).where(Project.id == project_id)
@@ -49,9 +51,9 @@ async def get_project(
 @router.post("", response_model=ProjectRead, status_code=status.HTTP_201_CREATED)
 async def create_project(
     project_in: ProjectCreate,
+    _current_user: CurrentUser,
     db: AsyncSession = Depends(get_db),
 ) -> ProjectRead:
-    # TODO: Get owner_id from authenticated user
     project = Project(**project_in.model_dump())
     db.add(project)
     await db.flush()
@@ -63,6 +65,7 @@ async def create_project(
 async def update_project(
     project_id: UUID,
     project_in: ProjectUpdate,
+    _current_user: CurrentUser,
     db: AsyncSession = Depends(get_db),
 ) -> ProjectRead:
     query = select(Project).where(Project.id == project_id)
@@ -84,6 +87,7 @@ async def update_project(
 @router.delete("/{project_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_project(
     project_id: UUID,
+    _current_user: CurrentUser,
     db: AsyncSession = Depends(get_db),
 ) -> None:
     query = select(Project).where(Project.id == project_id)

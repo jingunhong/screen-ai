@@ -40,13 +40,13 @@ Last updated: 2026-01-29
 
 ### Completed
 - [x] User model (SQLAlchemy model and Pydantic schemas)
-
-### Pending
-- [ ] Login/logout endpoints
-- [ ] Session management
-- [ ] Password hashing utilities
-- [ ] Frontend login page
-- [ ] Protected routes (auth middleware)
+- [x] Login endpoint (POST /api/auth/login with JWT tokens)
+- [x] Logout (client-side token removal - standard for JWT auth)
+- [x] JWT-based session management (7-day token expiration)
+- [x] Password hashing utilities (bcrypt via passlib)
+- [x] Frontend login page (full-featured with AuthProvider context)
+- [x] Protected routes (auth middleware on all API endpoints)
+- [x] Admin user seeding script
 
 ---
 
@@ -116,7 +116,7 @@ Last updated: 2026-01-29
 | Image Storage | AWS S3 | Scalable, cost-effective |
 | Image Format | TIFF (Perkin Elmer) | Domain standard |
 | Plate Format | Flexible (default 384) | Support various plate types |
-| Auth | Session-based | Simple for single-tenant MVP |
+| Auth | JWT-based | Stateless, simple for MVP |
 
 ---
 

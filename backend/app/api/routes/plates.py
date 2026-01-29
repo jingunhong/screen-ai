@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.api.deps import get_db, get_pagination
+from app.api.deps import CurrentUser, get_db, get_pagination
 from app.models.plate import Plate
 from app.schemas.pagination import PaginatedResponse, PaginationParams
 from app.schemas.plate import PlateCreate, PlateRead, PlateUpdate
@@ -14,6 +14,7 @@ router = APIRouter()
 
 @router.get("", response_model=PaginatedResponse[PlateRead])
 async def list_plates(
+    _current_user: CurrentUser,
     experiment_id: UUID | None = None,
     db: AsyncSession = Depends(get_db),
     pagination: PaginationParams = Depends(get_pagination),
@@ -39,6 +40,7 @@ async def list_plates(
 @router.get("/{plate_id}", response_model=PlateRead)
 async def get_plate(
     plate_id: UUID,
+    _current_user: CurrentUser,
     db: AsyncSession = Depends(get_db),
 ) -> PlateRead:
     query = select(Plate).where(Plate.id == plate_id)
@@ -54,6 +56,7 @@ async def get_plate(
 @router.post("", response_model=PlateRead, status_code=status.HTTP_201_CREATED)
 async def create_plate(
     plate_in: PlateCreate,
+    _current_user: CurrentUser,
     db: AsyncSession = Depends(get_db),
 ) -> PlateRead:
     plate = Plate(**plate_in.model_dump())
@@ -67,6 +70,7 @@ async def create_plate(
 async def update_plate(
     plate_id: UUID,
     plate_in: PlateUpdate,
+    _current_user: CurrentUser,
     db: AsyncSession = Depends(get_db),
 ) -> PlateRead:
     query = select(Plate).where(Plate.id == plate_id)
@@ -88,6 +92,7 @@ async def update_plate(
 @router.delete("/{plate_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_plate(
     plate_id: UUID,
+    _current_user: CurrentUser,
     db: AsyncSession = Depends(get_db),
 ) -> None:
     query = select(Plate).where(Plate.id == plate_id)

@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.api.deps import get_db, get_pagination
+from app.api.deps import CurrentUser, get_db, get_pagination
 from app.models.image import Image
 from app.schemas.image import ImageCreate, ImageRead, ImageUpdate
 from app.schemas.pagination import PaginatedResponse, PaginationParams
@@ -14,6 +14,7 @@ router = APIRouter()
 
 @router.get("", response_model=PaginatedResponse[ImageRead])
 async def list_images(
+    _current_user: CurrentUser,
     well_id: UUID | None = None,
     db: AsyncSession = Depends(get_db),
     pagination: PaginationParams = Depends(get_pagination),
@@ -39,6 +40,7 @@ async def list_images(
 @router.get("/{image_id}", response_model=ImageRead)
 async def get_image(
     image_id: UUID,
+    _current_user: CurrentUser,
     db: AsyncSession = Depends(get_db),
 ) -> ImageRead:
     query = select(Image).where(Image.id == image_id)
@@ -54,6 +56,7 @@ async def get_image(
 @router.post("", response_model=ImageRead, status_code=status.HTTP_201_CREATED)
 async def create_image(
     image_in: ImageCreate,
+    _current_user: CurrentUser,
     db: AsyncSession = Depends(get_db),
 ) -> ImageRead:
     image = Image(**image_in.model_dump())
@@ -67,6 +70,7 @@ async def create_image(
 async def update_image(
     image_id: UUID,
     image_in: ImageUpdate,
+    _current_user: CurrentUser,
     db: AsyncSession = Depends(get_db),
 ) -> ImageRead:
     query = select(Image).where(Image.id == image_id)
@@ -88,6 +92,7 @@ async def update_image(
 @router.delete("/{image_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_image(
     image_id: UUID,
+    _current_user: CurrentUser,
     db: AsyncSession = Depends(get_db),
 ) -> None:
     query = select(Image).where(Image.id == image_id)
