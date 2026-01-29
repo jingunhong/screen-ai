@@ -1,4 +1,5 @@
 from datetime import date
+from typing import TYPE_CHECKING
 from uuid import UUID
 
 from sqlalchemy import Date, ForeignKey, String, Text
@@ -6,7 +7,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.models.base import BaseModel
 
-if True:  # TYPE_CHECKING workaround for circular imports
+if TYPE_CHECKING:
     from app.models.plate import Plate
     from app.models.project import Project
 

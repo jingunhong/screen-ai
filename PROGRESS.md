@@ -31,8 +31,8 @@ Last updated: 2026-01-29
 - [x] API documentation (OpenAPI/Swagger auto-generated at /api/docs)
 - [x] Alembic configured with async support
 
-### In Progress
-- [ ] Generate initial Alembic migration
+- [x] Initial Alembic migration created (all 8 tables: users, compounds, projects, experiments, plates, wells, images, analyses)
+- [x] Fixed circular import issues in SQLAlchemy models (TYPE_CHECKING)
 
 ---
 
