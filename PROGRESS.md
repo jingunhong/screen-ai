@@ -1,8 +1,8 @@
 # Project Progress Tracker
 
-## Current Status: Planning Phase
+## Current Status: Foundation Phase
 
-Last updated: 2025-01-29
+Last updated: 2026-01-29
 
 ---
 
@@ -17,19 +17,23 @@ Last updated: 2025-01-29
 ### In Progress
 - [ ] Project scaffolding (backend + frontend structure)
 
-### Pending
-- [ ] Database schema design
+### Completed
+- [x] Database schema design (SQLAlchemy models for all entities)
 - [x] Backend project setup (FastAPI, SQLAlchemy, Alembic)
 - [x] Frontend project setup (React 19, TypeScript, Vite, Tailwind CSS, Bun)
-- [ ] Docker Compose configuration
+- [x] Docker Compose configuration (PostgreSQL, backend, frontend)
 
 ---
 
 ## Phase 2: Core Data Model & API
 
-### Pending
-- [ ] SQLAlchemy models for: Project, Experiment, Plate, Well, Image, Compound, Analysis
+### Completed
+- [x] SQLAlchemy models for: Project, Experiment, Plate, Well, Image, Compound, Analysis, User
+
+### In Progress
 - [ ] Alembic migrations
+
+### Pending
 - [ ] CRUD endpoints for all entities
 - [ ] API documentation (OpenAPI/Swagger)
 

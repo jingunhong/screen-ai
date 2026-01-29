@@ -12,6 +12,20 @@ Screen AI is a web application for managing, exploring, and analyzing high-conte
 - **Analyze** screening results with dose-response curves (DRC) and quality metrics (Z-score)
 - **Develop** (future) custom image analysis algorithms with AI assistance
 
+## Quick Start (Local Demo)
+
+```bash
+# Clone and start with Docker (easiest way)
+git clone <repo-url>
+cd screen-ai
+docker-compose up -d
+
+# Access the application:
+# - Frontend: http://localhost:5173
+# - Backend API: http://localhost:8000
+# - API Docs: http://localhost:8000/api/docs
+```
+
 ## Tech Stack
 
 | Layer | Technology |
@@ -104,10 +118,62 @@ SECRET_KEY=your_secret_key
 VITE_API_URL=http://localhost:8000
 ```
 
-### Docker Compose
+### Docker Compose (Recommended for Demo)
+
+The easiest way to run the full stack locally:
 
 ```bash
+# Start all services (PostgreSQL, backend, frontend)
 docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop all services
+docker-compose down
+
+# Stop and remove volumes (clean slate)
+docker-compose down -v
+```
+
+**Services:**
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:8000
+- API Docs: http://localhost:8000/api/docs
+- PostgreSQL: localhost:5432
+
+### Running Without Docker
+
+If you prefer to run services individually:
+
+```bash
+# Terminal 1: Start PostgreSQL (requires local PostgreSQL installation)
+# Make sure PostgreSQL is running and create the database:
+createdb screen_ai
+
+# Terminal 2: Start backend
+cd backend
+uv sync
+uv run uvicorn app.main:app --reload
+
+# Terminal 3: Start frontend
+cd frontend
+bun install
+bun dev
+```
+
+### Database Migrations
+
+```bash
+# With Docker Compose running:
+docker-compose exec backend uv run alembic upgrade head
+
+# Without Docker (local development):
+cd backend
+uv run alembic upgrade head
+
+# Create a new migration after model changes:
+uv run alembic revision --autogenerate -m "Description of changes"
 ```
 
 ## Project Structure
