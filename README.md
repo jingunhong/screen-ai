@@ -52,6 +52,7 @@ Project
 
 ### Prerequisites
 - Python 3.11+
+- [uv](https://docs.astral.sh/uv/) (Python package manager)
 - Node.js 18+
 - PostgreSQL 15+
 - Docker & Docker Compose (optional)
@@ -63,12 +64,10 @@ Project
 git clone <repo-url>
 cd screen-ai
 
-# Backend setup
+# Backend setup (using uv - https://docs.astral.sh/uv/)
 cd backend
-python -m venv venv
-source venv/bin/activate  # or `venv\Scripts\activate` on Windows
-pip install -r requirements.txt
-uvicorn app.main:app --reload
+uv sync                                  # Install dependencies
+uv run uvicorn app.main:app --reload     # Start dev server
 
 # Frontend setup (new terminal)
 cd frontend

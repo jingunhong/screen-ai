@@ -26,7 +26,7 @@ screen-ai/
 │   │   └── main.py
 │   ├── alembic/           # DB migrations
 │   ├── tests/
-│   └── requirements.txt
+│   └── pyproject.toml     # uv package management
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
@@ -102,8 +102,8 @@ Focus areas:
 ```bash
 # Backend
 cd backend
-pip install -r requirements.txt
-uvicorn app.main:app --reload
+uv sync                      # Install dependencies
+uv run uvicorn app.main:app --reload
 
 # Frontend
 cd frontend
@@ -112,7 +112,11 @@ npm run dev
 
 # Database migrations
 cd backend
-alembic upgrade head
+uv run alembic upgrade head
+
+# Add new dependencies
+uv add <package-name>
+uv add --dev <dev-package>   # For dev dependencies
 ```
 
 ## Testing
