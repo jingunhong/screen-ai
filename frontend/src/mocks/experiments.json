@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "name": "Cell Cycle Screen",
+    "description": "High-throughput screening of cell cycle inhibitors",
+    "project_id": 1,
+    "project_name": "Project Alpha",
+    "plate_count": 384,
+    "status": "ready",
+    "created_at": "2023-10-01T10:00:00Z",
+    "updated_at": "2023-10-24T14:30:00Z"
+  },
+  {
+    "id": 2,
+    "name": "Drug Toxicity",
+    "description": "Toxicity assessment of drug candidates",
+    "project_id": 1,
+    "project_name": "Project Alpha",
+    "plate_count": 96,
+    "status": "processing",
+    "created_at": "2023-10-05T09:00:00Z",
+    "updated_at": "2023-10-22T11:15:00Z"
+  },
+  {
+    "id": 3,
+    "name": "Mitosis Check",
+    "description": "Mitotic index measurement",
+    "project_id": 1,
+    "project_name": "Project Alpha",
+    "plate_count": 12,
+    "status": "failed",
+    "created_at": "2023-10-10T08:30:00Z",
+    "updated_at": "2023-10-20T16:00:00Z"
+  },
+  {
+    "id": 4,
+    "name": "Protein Folding V2",
+    "description": "Second iteration of protein folding assay",
+    "project_id": 2,
+    "project_name": "Project Beta",
+    "plate_count": 48,
+    "status": "ready",
+    "created_at": "2023-09-25T11:00:00Z",
+    "updated_at": "2023-10-18T10:30:00Z"
+  },
+  {
+    "id": 5,
+    "name": "Membrane Flux",
+    "description": "Ion channel flux measurement",
+    "project_id": 3,
+    "project_name": "Project Gamma",
+    "plate_count": 24,
+    "status": "ready",
+    "created_at": "2023-09-20T14:00:00Z",
+    "updated_at": "2023-10-15T16:45:00Z"
+  },
+  {
+    "id": 6,
+    "name": "Apoptosis Markers",
+    "description": "Detection of apoptosis markers",
+    "project_id": 2,
+    "project_name": "Project Beta",
+    "plate_count": 192,
+    "status": "processing",
+    "created_at": "2023-10-08T10:00:00Z",
+    "updated_at": "2023-10-19T09:00:00Z"
+  }
+]
