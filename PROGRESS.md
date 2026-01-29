@@ -19,8 +19,8 @@ Last updated: 2025-01-29
 
 ### Pending
 - [ ] Database schema design
-- [ ] Backend project setup (FastAPI, SQLAlchemy, Alembic)
-- [ ] Frontend project setup (React, TypeScript)
+- [x] Backend project setup (FastAPI, SQLAlchemy, Alembic)
+- [x] Frontend project setup (React 19, TypeScript, Vite, Tailwind CSS, Bun)
 - [ ] Docker Compose configuration
 
 ---
@@ -102,9 +102,12 @@ Last updated: 2025-01-29
 | Decision | Choice | Rationale |
 |----------|--------|-----------|
 | Python Version | 3.12 | Latest stable, performance improvements |
-| Package Manager | uv | Fast, modern Python package management |
+| Package Manager (Backend) | uv | Fast, modern Python package management |
+| Package Manager (Frontend) | Bun | Fast runtime and package manager |
 | Backend Framework | FastAPI | Async, modern Python, auto-docs |
-| Frontend Framework | React + TypeScript | Industry standard, type safety |
+| Frontend Framework | React 19 + TypeScript | Industry standard, type safety |
+| Frontend Build Tool | Vite | Fast dev server, optimized builds |
+| CSS Framework | Tailwind CSS | Utility-first, rapid development |
 | Database | PostgreSQL | Robust, JSON support, extensions |
 | Image Storage | AWS S3 | Scalable, cost-effective |
 | Image Format | TIFF (Perkin Elmer) | Domain standard |
