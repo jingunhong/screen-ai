@@ -2,6 +2,7 @@ from fastapi import APIRouter
 
 from app.api.routes import (
     analyses,
+    auth,
     compounds,
     experiments,
     health,
@@ -14,6 +15,7 @@ from app.api.routes import (
 api_router = APIRouter()
 
 api_router.include_router(health.router, tags=["health"])
+api_router.include_router(auth.router, prefix="/auth", tags=["auth"])
 api_router.include_router(projects.router, prefix="/projects", tags=["projects"])
 api_router.include_router(experiments.router, prefix="/experiments", tags=["experiments"])
 api_router.include_router(plates.router, prefix="/plates", tags=["plates"])

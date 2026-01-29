@@ -3,6 +3,11 @@ from app.schemas.analysis import (
     AnalysisRead,
     AnalysisUpdate,
 )
+from app.schemas.auth import (
+    LoginRequest,
+    Token,
+    TokenPayload,
+)
 from app.schemas.compound import (
     CompoundCreate,
     CompoundRead,
@@ -45,6 +50,10 @@ __all__ = [
     "AnalysisCreate",
     "AnalysisRead",
     "AnalysisUpdate",
+    # Auth
+    "LoginRequest",
+    "Token",
+    "TokenPayload",
     # Compound
     "CompoundCreate",
     "CompoundRead",
