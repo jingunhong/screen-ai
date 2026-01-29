@@ -125,6 +125,27 @@ uv run alembic upgrade head
 - Backend: `uv run pytest` in backend directory
 - Frontend: `bun test` in frontend directory
 
+## Linting & Formatting
+
+### Backend (Ruff)
+
+```bash
+cd backend
+uv run ruff check .           # Check for linting errors
+uv run ruff check . --fix     # Auto-fix linting errors
+uv run ruff format .          # Format code
+```
+
+### Frontend (ESLint + Prettier)
+
+```bash
+cd frontend
+bun run lint                  # Check for linting errors
+bun run lint:fix              # Auto-fix linting errors
+bun run format                # Format code with Prettier
+bun run format:check          # Check formatting without changes
+```
+
 ## Notes for AI Assistant
 
 - Always check PROGRESS.md for current state and next tasks
