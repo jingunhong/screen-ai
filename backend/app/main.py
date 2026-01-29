@@ -1,5 +1,5 @@
+from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
-from typing import AsyncIterator
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -15,9 +15,7 @@ from app.models.user import User
 async def create_admin_user() -> None:
     """Create default admin user if it doesn't exist."""
     async with async_session_maker() as session:
-        result = await session.execute(
-            select(User).where(User.email == settings.admin_email)
-        )
+        result = await session.execute(select(User).where(User.email == settings.admin_email))
         existing_user = result.scalar_one_or_none()
 
         if not existing_user:

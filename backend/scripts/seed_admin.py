@@ -28,9 +28,7 @@ async def seed_admin_user() -> None:
     """Create or update the default admin user."""
     async with async_session_maker() as session:
         # Check if admin user already exists
-        result = await session.execute(
-            select(User).where(User.email == settings.admin_email)
-        )
+        result = await session.execute(select(User).where(User.email == settings.admin_email))
         existing_user = result.scalar_one_or_none()
 
         if existing_user:

@@ -5,12 +5,8 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-8">
-      <h1 className="text-4xl font-bold text-gray-800 mb-8">
-        Screen AI
-      </h1>
-      <p className="text-gray-600 mb-6">
-        Drug Discovery Screening Data Management Platform
-      </p>
+      <h1 className="text-4xl font-bold text-gray-800 mb-8">Screen AI</h1>
+      <p className="text-gray-600 mb-6">Drug Discovery Screening Data Management Platform</p>
       <div className="bg-white rounded-lg shadow-md p-6">
         <button
           onClick={() => setCount((count) => count + 1)}
