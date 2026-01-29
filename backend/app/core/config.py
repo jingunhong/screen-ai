@@ -17,7 +17,14 @@ class Settings(BaseSettings):
 
     # Security
     secret_key: str = "change-me-in-production"
-    session_expire_minutes: int = 60 * 24 * 7  # 1 week
+    access_token_expire_minutes: int = 60 * 24 * 7  # 1 week
+    jwt_algorithm: str = "HS256"
+
+    # Default admin user (for demo/development)
+    admin_email: str = "admin@example.com"
+    admin_password: str = "admin123"
+    admin_full_name: str = "Admin User"
+    create_admin_on_startup: bool = False  # Set to True to auto-create admin on startup
 
     # AWS S3
     s3_bucket: str = ""
