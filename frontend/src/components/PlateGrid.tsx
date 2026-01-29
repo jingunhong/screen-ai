@@ -55,7 +55,7 @@ export function PlateGrid({
               className={`flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full px-4 transition-all active:scale-95 ${
                 selectedFeature === filter.type
                   ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900'
-                  : 'bg-white border border-slate-200 dark:bg-slate-800 dark:border-slate-700 hover:border-slate-400'
+                  : 'bg-white border border-slate-200 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300 hover:border-slate-400'
               }`}
             >
               <span
@@ -96,7 +96,7 @@ export function PlateGrid({
                 {colLabels.map((label) => (
                   <div
                     key={label}
-                    className="w-6 text-center text-[10px] font-bold text-slate-400"
+                    className="w-6 text-center text-[10px] font-bold text-slate-400 dark:text-slate-500"
                   >
                     {label}
                   </div>
@@ -108,7 +108,7 @@ export function PlateGrid({
             <div className="flex flex-col gap-0.5">
               {rowLabels.map((rowLabel, rowIndex) => (
                 <div key={rowLabel} className="flex items-center">
-                  <div className="w-8 flex-none text-center text-xs font-bold text-slate-400">
+                  <div className="w-8 flex-none text-center text-xs font-bold text-slate-400 dark:text-slate-500">
                     {rowLabel}
                   </div>
                   <div className="flex flex-1 gap-0.5">
@@ -152,7 +152,7 @@ export function PlateGrid({
       </div>
 
       {/* Legend / Footer */}
-      <div className="flex-none bg-white border-t border-slate-200 dark:bg-[#16202a] dark:border-slate-800 px-8 py-3 flex gap-6 text-xs text-slate-500 font-medium">
+      <div className="flex-none bg-white border-t border-slate-200 dark:bg-[#16202a] dark:border-slate-800 px-8 py-3 flex gap-6 text-xs text-slate-500 dark:text-slate-400 font-medium">
         <div className="flex items-center gap-2">
           <div
             className={`size-3 rounded-full ${
@@ -206,7 +206,7 @@ export function PlateGrid({
           <span>Low {currentFilter.label}</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="size-3 rounded-full bg-slate-100 border border-slate-200"></div>
+          <div className="size-3 rounded-full bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600"></div>
           <span>Empty / Unscanned</span>
         </div>
       </div>
