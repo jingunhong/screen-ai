@@ -3,7 +3,7 @@ import AuthProvider from './components/AuthProvider'
 import { useAuth } from './hooks/useAuth'
 import ProtectedRoute from './components/ProtectedRoute'
 import LoginPage from './pages/LoginPage'
-import DashboardPage from './pages/DashboardPage'
+import ProjectsExperimentsPage from './pages/ProjectsExperimentsPage'
 
 function LoginRoute() {
   const { isAuthenticated, isLoading } = useAuth()
@@ -36,7 +36,15 @@ function App() {
             path="/"
             element={
               <ProtectedRoute>
-                <DashboardPage />
+                <ProjectsExperimentsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/experiments/:id"
+            element={
+              <ProtectedRoute>
+                <ProjectsExperimentsPage />
               </ProtectedRoute>
             }
           />
