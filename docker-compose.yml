@@ -53,7 +53,7 @@ services:
       dockerfile: Dockerfile
     container_name: screen-ai-frontend
     environment:
-      VITE_API_URL: https://screen-ai.duckdns.org
+      VITE_API_URL: https://screen-ai.duckdns.org/api
     expose:
       - "5173"
     volumes:
