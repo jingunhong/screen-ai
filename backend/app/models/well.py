@@ -1,3 +1,4 @@
+from typing import TYPE_CHECKING
 from uuid import UUID
 
 from sqlalchemy import ForeignKey, String
@@ -5,7 +6,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.models.base import BaseModel
 
-if True:  # TYPE_CHECKING workaround for circular imports
+if TYPE_CHECKING:
     from app.models.analysis import Analysis
     from app.models.compound import Compound
     from app.models.image import Image
