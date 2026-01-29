@@ -17,6 +17,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd ~/repos/screen-ai
-            git pull origin main
-            docker-compose down
+            git pull --rebase origin main
+            docker-compose down --rmi all
             docker-compose up -d --build
