@@ -25,24 +25,28 @@ Last updated: 2026-01-29
 
 ### Completed
 - [x] SQLAlchemy models for: Project, Experiment, Plate, Well, Image, Compound, Analysis, User
+- [x] Pydantic schemas for all entities (with base, create, read, update variants)
+- [x] CRUD endpoints for all entities (projects, experiments, plates, wells, images, compounds, analyses)
+- [x] Pagination support for list endpoints
+- [x] API documentation (OpenAPI/Swagger auto-generated at /api/docs)
+- [x] Alembic configured with async support
 
 ### In Progress
-- [ ] Alembic migrations
-
-### Pending
-- [ ] CRUD endpoints for all entities
-- [ ] API documentation (OpenAPI/Swagger)
+- [ ] Generate initial Alembic migration
 
 ---
 
 ## Phase 3: Authentication
 
+### Completed
+- [x] User model (SQLAlchemy model and Pydantic schemas)
+
 ### Pending
-- [ ] User model
 - [ ] Login/logout endpoints
 - [ ] Session management
+- [ ] Password hashing utilities
 - [ ] Frontend login page
-- [ ] Protected routes
+- [ ] Protected routes (auth middleware)
 
 ---
 

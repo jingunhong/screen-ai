@@ -68,10 +68,10 @@ screen-ai/
 
 ### Frontend
 
-- React 18+ with TypeScript
+- React 19 with TypeScript
 - Use React Query for server state
 - Component-based architecture
-- Tailwind CSS or similar for styling
+- Tailwind CSS for styling
 
 ### API Design
 
