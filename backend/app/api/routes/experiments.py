@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.api.deps import get_db, get_pagination
+from app.api.deps import CurrentUser, get_db, get_pagination
 from app.models.experiment import Experiment
 from app.schemas.experiment import ExperimentCreate, ExperimentRead, ExperimentUpdate
 from app.schemas.pagination import PaginatedResponse, PaginationParams
@@ -14,6 +14,7 @@ router = APIRouter()
 
 @router.get("", response_model=PaginatedResponse[ExperimentRead])
 async def list_experiments(
+    _current_user: CurrentUser,
     project_id: UUID | None = None,
     db: AsyncSession = Depends(get_db),
     pagination: PaginationParams = Depends(get_pagination),
@@ -39,6 +40,7 @@ async def list_experiments(
 @router.get("/{experiment_id}", response_model=ExperimentRead)
 async def get_experiment(
     experiment_id: UUID,
+    _current_user: CurrentUser,
     db: AsyncSession = Depends(get_db),
 ) -> ExperimentRead:
     query = select(Experiment).where(Experiment.id == experiment_id)
@@ -54,6 +56,7 @@ async def get_experiment(
 @router.post("", response_model=ExperimentRead, status_code=status.HTTP_201_CREATED)
 async def create_experiment(
     experiment_in: ExperimentCreate,
+    _current_user: CurrentUser,
     db: AsyncSession = Depends(get_db),
 ) -> ExperimentRead:
     experiment = Experiment(**experiment_in.model_dump())
@@ -67,6 +70,7 @@ async def create_experiment(
 async def update_experiment(
     experiment_id: UUID,
     experiment_in: ExperimentUpdate,
+    _current_user: CurrentUser,
     db: AsyncSession = Depends(get_db),
 ) -> ExperimentRead:
     query = select(Experiment).where(Experiment.id == experiment_id)
@@ -88,6 +92,7 @@ async def update_experiment(
 @router.delete("/{experiment_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_experiment(
     experiment_id: UUID,
+    _current_user: CurrentUser,
     db: AsyncSession = Depends(get_db),
 ) -> None:
     query = select(Experiment).where(Experiment.id == experiment_id)

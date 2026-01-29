@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.api.deps import get_db, get_pagination
+from app.api.deps import CurrentUser, get_db, get_pagination
 from app.models.well import Well
 from app.schemas.pagination import PaginatedResponse, PaginationParams
 from app.schemas.well import WellCreate, WellRead, WellUpdate
@@ -14,6 +14,7 @@ router = APIRouter()
 
 @router.get("", response_model=PaginatedResponse[WellRead])
 async def list_wells(
+    _current_user: CurrentUser,
     plate_id: UUID | None = None,
     db: AsyncSession = Depends(get_db),
     pagination: PaginationParams = Depends(get_pagination),
@@ -39,6 +40,7 @@ async def list_wells(
 @router.get("/{well_id}", response_model=WellRead)
 async def get_well(
     well_id: UUID,
+    _current_user: CurrentUser,
     db: AsyncSession = Depends(get_db),
 ) -> WellRead:
     query = select(Well).where(Well.id == well_id)
@@ -54,6 +56,7 @@ async def get_well(
 @router.post("", response_model=WellRead, status_code=status.HTTP_201_CREATED)
 async def create_well(
     well_in: WellCreate,
+    _current_user: CurrentUser,
     db: AsyncSession = Depends(get_db),
 ) -> WellRead:
     well = Well(**well_in.model_dump())
@@ -67,6 +70,7 @@ async def create_well(
 async def update_well(
     well_id: UUID,
     well_in: WellUpdate,
+    _current_user: CurrentUser,
     db: AsyncSession = Depends(get_db),
 ) -> WellRead:
     query = select(Well).where(Well.id == well_id)
@@ -88,6 +92,7 @@ async def update_well(
 @router.delete("/{well_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_well(
     well_id: UUID,
+    _current_user: CurrentUser,
     db: AsyncSession = Depends(get_db),
 ) -> None:
     query = select(Well).where(Well.id == well_id)
